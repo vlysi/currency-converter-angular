@@ -1,0 +1,34 @@
+<div class="container mt-3">
+  <div class="row mb-3">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" class="form-control form-control-lg" [(ngModel)]="amount" (input)="convert()"
+              id="amount">
+      </div>    
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="from">From:</label>
+        <select class="form-control form-control-lg" id="from" [(ngModel)]="sourceCurrency" > 
+          <option *ngFor="let currency of currencies">{{ currency }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="to">To:</label>
+        <select class="form-control form-control-lg" id="to" [(ngModel)]="sourceCurrency" (change)="convert()">
+          <option *ngFor="let currency of currencies">{{ currency }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <h5 *ngIf="amount > 0 " class="text-center mt-3">
+    <span class="badge">{{ amount }} {{ sourceCurrency }}</span>
+    <span class="badge">=</span>
+    <span class="badge"> {{ total | number: '0.0-2'}} {{ targetCurrency }}</span>
+  </h5>
+</div>
